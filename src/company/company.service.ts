@@ -1,14 +1,13 @@
-import { Delete, Injectable, Query } from "@nestjs/common";
+import { Injectable} from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Company } from "./models/company.model";
 import { CreateCompanyDto } from "./dto/create-company.dto";
 import { UpdateCompanyDto } from "./dto/update-company.dto";
-import { CompanyQueryDto } from "./dto/query-company.dto";
 import { Op } from "sequelize";
 
 @Injectable()
 export class CompanyService {
-  constructor(@InjectModel(Company) private companyModule: typeof Company) {}
+  constructor(@InjectModel(Company) private readonly companyModule: typeof Company) {}
 
   async createCompany(createCompanyDto: CreateCompanyDto): Promise<Company> {
     // return this.companyModul.create(createCompanyDto)
@@ -17,7 +16,7 @@ export class CompanyService {
   }
 
   async findAllCompanies(): Promise<Company[]> {
-    return this.companyModule.findAll();
+    return this.companyModule.findAll({include: {all:true}});
   }
 
   async findOneCompanies(id: number): Promise<Company | null> {
