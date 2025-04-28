@@ -29,10 +29,16 @@ import { MaterialsModule } from './materials/materials.module';
 import { Material } from "./materials/models/material.model";
 import { BuildingMaterialsModule } from './building_materials/building_materials.module';
 import { BuildingMaterial } from "./building_materials/models/building_material.model";
+import { FileModule } from './file/file.module';
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
 
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: ".env", isGlobal: true }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "static"),
+    }),
     SequelizeModule.forRoot({
       dialect: "postgres",
       host: process.env.PG_HOST,
@@ -74,7 +80,8 @@ import { BuildingMaterial } from "./building_materials/models/building_material.
     UsersModule,
     AuthModule,
     MaterialsModule,
-    BuildingMaterialsModule, //Har birini
+    BuildingMaterialsModule,
+    FileModule, //Har birini
   ],
   controllers: [],
   providers: [],

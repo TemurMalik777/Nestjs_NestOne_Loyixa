@@ -3,10 +3,11 @@ import { MachineService } from "./machine.service";
 import { MachineController } from "./machine.controller";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { Machine } from "./models/machine.model";
-import { CompanyModule } from "src/company/company.module";
+import { CompanyModule } from "../company/company.module";
+import { FileModule } from "../file/file.module";
 
 @Module({
-  imports: [SequelizeModule.forFeature([Machine]), CompanyModule],
+  imports: [SequelizeModule.forFeature([Machine]), CompanyModule, FileModule],
   controllers: [MachineController],
   providers: [MachineService],
   exports: [],

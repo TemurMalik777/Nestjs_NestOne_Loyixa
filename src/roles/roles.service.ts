@@ -17,7 +17,7 @@ export class RolesService {
   }
 
   findByValue(value: string){
-    return this.roleModel.findOne({where: {value: value.toUpperCase()}})
+    return this.roleModel.findOne({where: {value: value?.toUpperCase()}})
   }
 
   findOne(id: number) {

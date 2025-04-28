@@ -1,6 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
-import { Builder } from "src/builder/models/builder.model";
-import { Machine } from "src/machine/models/machine.model";
+import { Builder } from "../../builder/models/builder.model";
+import { Machine } from "../../machine/models/machine.model";
 
 interface CompanyCreationAttr {
   // company modyle yartaishda kerak bo'ladigan atrebutlar
@@ -41,6 +41,6 @@ export class Company extends Model<Company, CompanyCreationAttr> {
   @HasMany(() => Builder)
   builder: Builder[];
 
-  @HasMany(()=> Machine)
-  machine: Machine[]
+  @HasMany(() => Machine)
+  machine: Machine[];
 }

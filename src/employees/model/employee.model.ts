@@ -6,14 +6,14 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Building } from "src/buildings/model/building.model";
+import { Building } from "../../buildings/model/building.model";
 
 interface IEmployeeCreateAttr {
   full_name: string;
   position: string;
   phone_number: string;
   hired_at: Date;
-  companyId: number;
+  // companyId: number;
 }
 
 @Table({ tableName: "employee" })
@@ -45,13 +45,13 @@ export class Employee extends Model<Employee, IEmployeeCreateAttr> {
   })
   hired_at: Date;
 
-  @ForeignKey(() => Building)
-  @Column({
-    type: DataType.INTEGER,
-    onDelete: "CASCADE"
-  })
-  companyId: number;
+  // @ForeignKey(() => Employee)
+  // @Column({
+  //   type: DataType.INTEGER,
+  //   onDelete: "CASCADE",
+  // })
+  // employeesId: number;
 
-  @BelongsTo(() => Building, { foreignKey: 'companyId', as: 'companyBuilding' })
-  companyBuilding: Building;
+  // @BelongsTo(() => Building, { foreignKey: "buildingId", as: "Building" })
+  // building: Building;
 }

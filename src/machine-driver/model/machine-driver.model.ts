@@ -6,8 +6,8 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Driver } from "src/driver/model/driver.model";
-import { Machine } from "src/machine/models/machine.model";
+import { Driver } from "../../driver/model/driver.model";
+import { Machine } from "../../machine/models/machine.model";
 
 interface IMachineDriverCreateAttr {
   driverId: number;

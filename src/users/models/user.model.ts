@@ -6,8 +6,9 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Role } from "src/roles/models/role.model";
+import { Role } from "../../roles/models/role.model";
 import { UserRole } from "./user-role.model";
+import { ApiProperty } from "@nestjs/swagger";
 
 interface IUserCreateAttr {
   name: string;
@@ -17,6 +18,10 @@ interface IUserCreateAttr {
 
 @Table({ tableName: "users" })
 export class User extends Model<User, IUserCreateAttr> {
+  @ApiProperty({
+    example:1,
+    description: "Foydalanuvchi unikal ID raqami"
+  })
   @Column({
     type: DataType.INTEGER,
     autoIncrement: true,
@@ -24,11 +29,19 @@ export class User extends Model<User, IUserCreateAttr> {
   })
   declare id: number;
 
+  @ApiProperty({
+    example: "user1",
+    description: "Foydalanuvchi ismi"
+  })
   @Column({
     type: DataType.STRING,
   })
   declare name: string;
 
+  @ApiProperty({
+    example: "user1@mail.uz",
+    description: "Foydalanuvchi email"
+  })
   @Column({
     type: DataType.STRING,
     unique: true,
@@ -36,11 +49,21 @@ export class User extends Model<User, IUserCreateAttr> {
   })
   declare email: string;
 
+
+  @ApiProperty({
+    example: "Uzbek",
+    description: "Foydalanuvchi paroli"
+  })
   @Column({
     type: DataType.STRING,
   })
   declare password: string;
 
+  @ApiProperty({
+    example: "false",
+    description: "Foydalanuvchi faolligi",
+    default: false
+  })
   @Column({
     type: DataType.BOOLEAN,
     defaultValue: false,

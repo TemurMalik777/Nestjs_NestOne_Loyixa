@@ -1,26 +1,53 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript"
-import { Building } from "src/buildings/model/building.model"
-import { Employee } from "src/employees/model/employee.model"
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from "sequelize-typescript";
+import { Building } from "../../buildings/model/building.model";
+import { Employee } from "../../employees/model/employee.model";
 
-
-interface IBuildingEmployeeCreateAttr{
-    buildingId: number
-    employeeId: number
-    role: string
-    assigned_at: Date
+interface IBuildingEmployeeCreateAttr {
+  buildingId: number;
+  employeeId: number;
+  role: string;
+  assigned_at: Date;
 }
 
-@Table({tableName: "building-employee"})
+@Table({ tableName: "building-employee" })
 export class BuildingEmployee extends Model<
-BuildingEmployee, IBuildingEmployeeCreateAttr
+  BuildingEmployee,
+  IBuildingEmployeeCreateAttr
 > {
-   @ForeignKey(()=> Building)
-   @Column({type: DataType.INTEGER})
-    buildingId: number
+  @ForeignKey(() => Building)
+  @Column({ type: DataType.INTEGER })
+  buildingId: number;
 
-    @ForeignKey(()=>Employee)
-    @Column({type: DataType.INTEGER})
-    employeeId: number
+  // @BelongsTo(() => Building) // <<-- BU KERAK
+  // building: Building;
 
-    
+  @ForeignKey(() => Employee)
+  @Column({ type: DataType.INTEGER })
+  employeeId: number;
+
+  // @BelongsTo(() => Employee) // <<-- BU KERAK
+  // employee: Employee;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  role: string;
+
+  @Column({
+    type: DataType.DATE,
+  })
+  assigned_at: Date;
+
+  // @BelongsTo(() => Building, { foreignKey: 'buildingId', as: 'building' })
+  // building: Building;
+
+  // @BelongsTo(() => Employee, { foreignKey: 'employeeId', as: 'employee' })
+  // employee: Employee;
 }

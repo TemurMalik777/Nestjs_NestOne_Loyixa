@@ -6,7 +6,7 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Company } from "src/company/models/company.model";
+import { Company } from "../../company/models/company.model";
 
 interface BuilderCreationAttr {
   full_name: string;
@@ -41,7 +41,8 @@ export class Builder extends Model<Builder, BuilderCreationAttr> {
 
   @ForeignKey(() => Company)
   @Column({
-    type: DataType.INTEGER, onDelete:"SET NULL"
+    type: DataType.INTEGER,
+    onDelete: "SET NULL",
   })
   declare companyId: number;
 

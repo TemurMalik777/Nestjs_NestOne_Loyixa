@@ -7,14 +7,15 @@ import {
   Model,
   Table,
 } from "sequelize-typescript";
-import { Company } from "src/company/models/company.model";
-import { Driver } from "src/driver/model/driver.model";
-import { MachineDriver } from "src/machine-driver/model/machine-driver.model";
+import { Company } from "../../company/models/company.model";
+import { Driver } from "../../driver/model/driver.model";
+import { MachineDriver } from "../../machine-driver/model/machine-driver.model";
 
 interface IMachineCreateAttr {
   model: string;
   name: string;
   companyId: number;
+  image: string;
 }
 
 @Table({ tableName: "machine" })
@@ -42,6 +43,11 @@ export class Machine extends Model<Machine, IMachineCreateAttr> {
     onDelete: "SET NULL",
   })
   declare companyId: number;
+
+  @Column({
+    type: DataType.STRING,
+  })
+  declare image: string;
 
   @BelongsTo(() => Company)
   company: Company;

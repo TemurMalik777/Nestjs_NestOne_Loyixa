@@ -1,5 +1,6 @@
 import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
-import { Employee } from "src/employees/model/employee.model";
+import { Employee } from "../../employees/model/employee.model";
+import { BuildingEmployee } from "../../building_employees/models/building_employee.model";
 
 interface IBuildingsCreateAttr {
   name: string;
@@ -20,23 +21,29 @@ export class Building extends Model<Building, IBuildingsCreateAttr> {
   @Column({
     type: DataType.STRING,
   })
-  name: string;
+  declare name: string;
 
   @Column({
     type: DataType.STRING,
   })
-  address: string;
+  declare address: string;
 
   @Column({
     type: DataType.DATE,
   })
-  started_at: Date;
+  declare started_at: Date;
 
   @Column({
     type: DataType.DATE,
   })
-  finished_at: Date;
+  declare finished_at: Date;
 
-  @HasMany(() => Employee, { foreignKey: "companyId", as: "employees" })
-  employees: Employee[];
+  // @HasMany(() => Employee, { foreignKey: "employeesId", as: "employees" })
+  // employees: Employee[];
+
+  // @HasMany(() => BuildingEmployee, {
+  //   foreignKey: "buildingId",
+  //   as: "buildingEmployees",
+  // })
+  // buildingEmployees: BuildingEmployee[];
 }
