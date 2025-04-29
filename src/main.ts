@@ -11,9 +11,8 @@ async function start() {
     // Logger.overrideLogger(false);//true
     const PORT = process.env.PORT || 3030;
     const app = await NestFactory.create(AppModule);
-    // app.us(join(__dirname, '..', 'static'))
     app.useGlobalPipes(new ValidationPipe());
-
+    // app.setGlobalPrefix("api")//ednpointlarni boshiga api qo'yib quyadi
     const config = new DocumentBuilder()
       .setTitle("Nest-One project")
       .setDescription("NEST-ONE REST API")

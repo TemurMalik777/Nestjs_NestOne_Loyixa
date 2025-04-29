@@ -1,10 +1,12 @@
 import { companyStub } from "../test/stubs/company.stubs";
 
-
-
-export const CompanyService = jest.fn().mockReturnValue({
-    createCompany: jest.fn().mockResolvedValue(companyStub()),
-    findAll: jest.fn().mockResolvedValue([companyStub()]),
-    findOne: jest.fn().mockResolvedValue(companyStub())
-    // remove: jest.fn().mockReturnValue({message: `Foydalanuvchi o'chirildi`})
-})
+export const CompanyServiceMock = {
+  createCompany: jest.fn().mockResolvedValue(companyStub()), // create o'rniga createCompany
+  findAllCompanies: jest.fn().mockResolvedValue([companyStub()]), // findAll o'rniga findAllCompanies
+  findOne: jest.fn().mockResolvedValue(companyStub()),
+  update: jest.fn().mockResolvedValue(companyStub()),
+  remove: jest.fn().mockResolvedValue({
+    success: true,
+    message: "Kompaniya muvaffaqiyatli o'chirildi",
+  }),
+};

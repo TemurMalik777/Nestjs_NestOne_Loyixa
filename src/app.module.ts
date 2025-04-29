@@ -81,7 +81,7 @@ import { join } from "path";
     AuthModule,
     MaterialsModule,
     BuildingMaterialsModule,
-    FileModule, //Har birini
+    FileModule,
   ],
   controllers: [],
   providers: [],
